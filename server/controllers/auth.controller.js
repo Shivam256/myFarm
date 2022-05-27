@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export const signup = expressAsyncHandler(async (req, res) => {
-  const {name, email, phone, password } = req.body;
+  const { name, email, phone, password } = req.body;
 
   if (name && email && password) {
     const userExist = await User.findOne({ email });
@@ -15,7 +15,7 @@ export const signup = expressAsyncHandler(async (req, res) => {
       });
     }
     const hash = await bcrypt.hash(password, 10);
-    const user = new User({ email, password: hash,name });
+    const user = new User({ email, password: hash, name });
     await user.save();
     const token = jwt.sign(
       {
@@ -39,7 +39,7 @@ export const signup = expressAsyncHandler(async (req, res) => {
       });
     }
     const hash = await bcrypt.hash(password, 10);
-    const user = new User({ phone, password: hash,name });
+    const user = new User({ phone, password: hash, name });
     await user.save();
     const token = jwt.sign(
       {
@@ -81,7 +81,7 @@ export const login = expressAsyncHandler(async (req, res) => {
         token,
       });
     }
-    return res.send({ok:false,message:"User does not exist!"})
+    return res.send({ ok: false, message: "User does not exist!" });
   }
 
   if (phone && password && !email) {
@@ -107,13 +107,20 @@ export const login = expressAsyncHandler(async (req, res) => {
         token,
       });
     }
-    return res.send({ok:false,message:"User does not exist!"})
+    return res.send({ ok: false, message: "User does not exist!" });
   }
 });
 
-
-
-
-
-
-
+export const jwtVerify = async (req, res) => {
+  const token = req.headers.authorization;
+  console.log(`token: ${token}`);
+  if (!token) {
+    return res.send(null);
+  }
+  const decodeToken = jwt.verify(token, process.env.JWT_SECRET);
+  if (decodeToken) {
+    const user = await User.findById(decodeToken._id);
+    return res.send({ user });
+  }
+  res.send(null);
+};
