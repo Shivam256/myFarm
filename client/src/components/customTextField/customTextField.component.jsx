@@ -1,41 +1,41 @@
 import React from "react";
 import { styled, TextField } from "@mui/material";
 
-const StyledTextField = styled(TextField)(() => ({
+const StyledTextField = styled(TextField)(({ inverted }) => ({
   width: "100%",
   "& label": {
-    color: "#fff !important",
+    color: inverted ? "#4CAF50 !important" : "#fff !important",
   },
   "& MuiInputLabel-root": {
-    color: "#fff",
+    color: inverted ? "#4CAF50" : "#fff",
   },
   "& MuiInputLabel-root.Mui-focused": {
-    color: "#fff !important",
+    color: inverted ? "#4CAF50 !important" : "#fff !important",
   },
   "& .MuiInput-underline:after": {
-    borderBottomColor: "#fff",
+    borderBottomColor: inverted ? "#4CAF50" : "#fff",
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: "#fff",
+      borderColor: inverted ? "#4CAF50" : "#fff",
     },
     "&:hover fieldset": {
-      borderColor: "#fff",
+      borderColor: inverted ? "#4CAF50" : "#fff",
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#fff",
+      borderColor: inverted ? "#4CAF50" : "#fff",
     },
   },
   "& input": {
-    color: "#fff",
+    color: inverted ? "#000" : "#fff",
   },
 }));
 
-const CustomTextField = ({ register, errors, name, ...props }) => {
+const CustomTextField = ({ register, errors, name, inverted, ...props }) => {
   return (
     <div className="w-5/6">
-      <StyledTextField {...props} {...register(name)} />
-      <p className="text-xs text-white mt-1">{errors[name]?.message}</p>
+      <StyledTextField inverted={inverted} {...props} {...register(name)} />
+      <p className={`text-xs ${inverted?'text-red-400':'text-white'} mt-1`}>{errors[name]?.message}</p>
     </div>
   );
 };

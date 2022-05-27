@@ -5,6 +5,7 @@ import CustomTextField from "../../components/customTextField/customTextField.co
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import useAuth from "../../hooks/useAuth";
 
 const loginSchema = yup.object({
   email: yup.string().email().required("Email is required"),
@@ -20,8 +21,11 @@ const Login = ({ setMode }) => {
     resolver: yupResolver(loginSchema),
   });
 
+  const {login} = useAuth();
+
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
+    login(data);
   };
   return (
     <div className="flex flex-col items-center gap-10">

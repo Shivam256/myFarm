@@ -29,7 +29,7 @@ export default function Router() {
   return useRoutes([
     {
       path: "/",
-      element: <Landing/>,
+      element: <Landing />,
     },
     {
       path: "/client",
@@ -37,7 +37,21 @@ export default function Router() {
       children: [
         {
           path: "home",
-          element: <Home/>,
+          element: <Home />,
+        },
+        {
+          path: "postQuery",
+          element: <PostQuery />,
+        },
+      ],
+    },
+    {
+      path: "/admin",
+      element: <MainLayout />,
+      children: [
+        {
+          path: "queries",
+          element: <AllQueries />,
         },
       ],
     },
@@ -52,4 +66,15 @@ const MainLayout = Loadable(
 const Landing = Loadable(
   lazy(() => import("../pages/landing/landing.component"))
 );
+
+//pages
 const Home = Loadable(lazy(() => import("../pages/home/home.componsnt")));
+
+const PostQuery = Loadable(
+  lazy(() => import("../pages/postQuery/postQuery.component"))
+);
+
+//admin pages
+const AllQueries = Loadable(
+  lazy(() => import("../pages/allQueries/allQueries.component"))
+);
