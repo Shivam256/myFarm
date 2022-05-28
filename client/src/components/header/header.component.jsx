@@ -3,6 +3,7 @@ import { ReactComponent as Logo } from "../../assets/svgs/logo.svg";
 import { Icon } from "@iconify/react";
 import Popover from "@mui/material/Popover";
 import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -20,11 +21,11 @@ const Header = () => {
   const id = open ? "simple-popover" : undefined;
 
   return (
-    <div className="w-full fixed top-2 h-12 flex px-5 py-2 items-center justify-between gap-5 px-10">
-      <div className="flex items-center gap-5 h-full ">
+    <div className="w-full bg-white fixed top-2 h-12 flex  py-2 items-center justify-between gap-5 px-10">
+      <Link className="flex items-center gap-5 h-full " to="/client/home">
         <Logo width="40px" height="40px" />
         <h1 className="text-2xl">MyFarm</h1>
-      </div>
+      </Link>
 
       <div className="flex gap-5">
         <button className="border-2 border-green-600 p-2 px-10 rounded-lg text-green-600">

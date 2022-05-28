@@ -43,6 +43,14 @@ export default function Router() {
           path: "postQuery",
           element: <PostQuery />,
         },
+        {
+          path: "postFinancialHelp",
+          element: <PostFinancialHelp />,
+        },
+        {
+          path: "explore",
+          element: <Explore />,
+        },
       ],
     },
     {
@@ -53,6 +61,10 @@ export default function Router() {
           path: "queries",
           element: <AllQueries />,
         },
+        {
+          path:"financialRequests",
+          element: <AllFinancialRequests/>
+        }
       ],
     },
   ]);
@@ -74,7 +86,21 @@ const PostQuery = Loadable(
   lazy(() => import("../pages/postQuery/postQuery.component"))
 );
 
+const PostFinancialHelp = Loadable(
+  lazy(() => import("../pages/postFinancialHelp/postFinancialHelp.component"))
+);
+
+const Explore = Loadable(
+  lazy(() => import("../pages/explore/explore.component"))
+);
+
 //admin pages
 const AllQueries = Loadable(
   lazy(() => import("../pages/allQueries/allQueries.component"))
+);
+
+const AllFinancialRequests = Loadable(
+  lazy(() =>
+    import("../pages/allFinancialRequests/allFinancialRequests.component")
+  )
 );

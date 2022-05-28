@@ -64,7 +64,7 @@ const Home = () => {
           </Link>
         </Grid>
         <Grid item md={3}>
-          <Link to="#">
+          <Link to="/client/postFinancialHelp">
             <div className='className="w-full h-52 bg-white shadow-xl rounded-lg hover:shadow-2xl flex flex-col items-center justify-center'>
               <Icon
                 icon="bx:rupee"
@@ -79,7 +79,7 @@ const Home = () => {
           </Link>
         </Grid>
         <Grid item md={3}>
-          <Link to="#">
+          <Link to="/client/explore">
             <div className='className="w-full h-52 bg-white shadow-xl rounded-lg hover:shadow-2xl flex flex-col items-center justify-center'>
               <Icon
                 icon="ic:baseline-explore"
