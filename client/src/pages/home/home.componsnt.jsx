@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { Grid } from "@mui/material";
+import { ButtonBase, Grid } from "@mui/material";
 import { Icon } from "@iconify/react";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
+import ContactModal from "../../components/contact/contactModal.component";
 
 const Home = () => {
   const settings = {
@@ -14,8 +15,15 @@ const Home = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    pauseOnHover:true
+    pauseOnHover: true,
   };
+
+  const [showContactModal, setShowContactModal] = useState(false);
+
+  const toggleContactModal = () => {
+    setShowContactModal(!showContactModal);
+  };
+
   return (
     <div className="pt-5">
       <Slider {...settings}>
@@ -26,14 +34,14 @@ const Home = () => {
             alt=""
           />
         </div>
-        <div  className="w-fit h-fit rounded-xl overflow-hidden px-3 outline-none">
+        <div className="w-fit h-fit rounded-xl overflow-hidden px-3 outline-none">
           <img
             src="https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
             className="w-full h-96 rounded-xl overflow-hidden object-fill"
             alt=""
           />
         </div>{" "}
-        <div  className="w-fit h-fit rounded-xl overflow-hidden px-3 outline-none">
+        <div className="w-fit h-fit rounded-xl overflow-hidden px-3 outline-none">
           <img
             src="https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
             className="w-full h-96 rounded-xl overflow-hidden object-fill"
@@ -94,8 +102,8 @@ const Home = () => {
           </Link>
         </Grid>
         <Grid item md={3}>
-          <Link to="#">
-            <div className='className="w-full h-52 bg-white shadow-xl rounded-lg hover:shadow-2xl flex flex-col items-center justify-center'>
+          <ButtonBase sx={{width:"100%"}} onClick={toggleContactModal} >
+            <div className='w-full h-52 bg-white shadow-xl rounded-lg hover:shadow-2xl flex flex-col items-center justify-center'>
               <Icon
                 icon="bxs:phone"
                 width="100px"
@@ -106,9 +114,10 @@ const Home = () => {
                 CONTACT
               </p>
             </div>
-          </Link>
+          </ButtonBase>
         </Grid>
       </Grid>
+      <ContactModal state={showContactModal} toggleModal={toggleContactModal} />
     </div>
   );
 };

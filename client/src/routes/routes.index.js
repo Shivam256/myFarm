@@ -51,6 +51,10 @@ export default function Router() {
           path: "explore",
           element: <Explore />,
         },
+        {
+          path:"news",
+          element:<News/>
+        }
       ],
     },
     {
@@ -64,6 +68,10 @@ export default function Router() {
         {
           path:"financialRequests",
           element: <AllFinancialRequests/>
+        },
+        {
+          path:"contacts",
+          element:<AllContacts/>
         }
       ],
     },
@@ -94,6 +102,10 @@ const Explore = Loadable(
   lazy(() => import("../pages/explore/explore.component"))
 );
 
+const News = Loadable(
+  lazy(()=> import("../pages/news/news.componsnt"))
+);
+
 //admin pages
 const AllQueries = Loadable(
   lazy(() => import("../pages/allQueries/allQueries.component"))
@@ -103,4 +115,8 @@ const AllFinancialRequests = Loadable(
   lazy(() =>
     import("../pages/allFinancialRequests/allFinancialRequests.component")
   )
+);
+
+const AllContacts = Loadable(
+  lazy(()=> import ("../pages/allContacts/allContacts.component"))
 );

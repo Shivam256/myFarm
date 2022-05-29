@@ -4,7 +4,8 @@ import storage from 'redux-persist/lib/storage';
 import auth from './slices/auth';
 import query from './slices/query';
 import financialHelp from './slices/financialHelp';
-
+import contact from './slices/contact';
+import news from './slices/news';
 
 const authPersistConfig = {
     key: 'auth',
@@ -16,7 +17,9 @@ const authPersistConfig = {
 const rootReducer = combineReducers({
     auth:persistReducer(authPersistConfig, auth),
     query:query,
-    financialHelp:financialHelp
+    financialHelp:financialHelp,
+    contact:contact,
+    news:news
 })
 
 export default rootReducer;
