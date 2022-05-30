@@ -31,6 +31,15 @@ const FinancialHelpSchema = new Schema({
     ref: "USER",
     required: true,
   },
+  response: [
+    {
+      text: "",
+      author: {
+        type: Schema.Types.ObjectId,
+        ref: "USER",
+      },
+    },
+  ],
 });
 
 const FinancialHelp = mongoose.model("FINANCIAL_HELP", FinancialHelpSchema);

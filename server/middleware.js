@@ -23,8 +23,19 @@ const isLoggedIn = async (req, res, next) => {
   }
 };
 
+
+const isAdmin = async (req,res,next) => {
+  if(req.user?.isAdmin){
+    next();
+  }else{
+    return res.status(500).send("Access Denied!")
+  }
+}
+
+
 const authenticate ={
-    isLoggedIn
+    isLoggedIn,
+    isAdmin
 }
 
 export default authenticate;

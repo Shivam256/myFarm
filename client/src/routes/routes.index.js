@@ -54,6 +54,14 @@ export default function Router() {
         {
           path:"news",
           element:<News/>
+        },
+        {
+          path:"queries",
+          element:<MyQueries/>
+        },
+        {
+          path:"financialRequests",
+          element:<MyFinancialRequests/>
         }
       ],
     },
@@ -120,3 +128,11 @@ const AllFinancialRequests = Loadable(
 const AllContacts = Loadable(
   lazy(()=> import ("../pages/allContacts/allContacts.component"))
 );
+
+const MyQueries = Loadable(
+  lazy(()=> import("../pages/myQueries/myQueries.component"))
+);
+
+const MyFinancialRequests = Loadable(
+  lazy(()=> import("../pages/myFinancialRequests/myFinancialRequests.component"))
+)

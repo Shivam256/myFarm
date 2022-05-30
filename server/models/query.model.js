@@ -25,6 +25,13 @@ const QuerySchema = new Schema({
     type: Date,
     default:Date.now
   },
+  response:[{
+    text:"",
+    author:{
+      type:Schema.Types.ObjectId,
+      ref:"USER"
+    }
+  }]
 });
 
 const Query = mongoose.model("QUERY", QuerySchema);

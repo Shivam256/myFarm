@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from "react";
-import useFinancialHelp from "../../hooks/useFinancialHelp";
-import FinancialRequestModal from "./financialRequestModal";
+import React, { useState, useEffect } from "react";
+import UserFinancialRequestModal from "./userFinancialRequestModal";
 
-const AllFinancialRequests = () => {
+import useFinancialHelp from "../../hooks/useFinancialHelp";
+
+const MyFinancialRequests = () => {
   const [financialModalState, setFinancialModalState] = useState({
     open: false,
     request: null,
   });
-  const { getAllFinancialRequests, financialRequests } = useFinancialHelp();
-
-
-
-  useEffect(() => {
-    getAllFinancialRequests();
-  }, []);
+  const { userFinancialRequests, getUserFinancialRequests } =
+    useFinancialHelp();
 
   const toggleFinancialModal = (request) => {
     if (request) {
@@ -26,11 +22,15 @@ const AllFinancialRequests = () => {
     }
   };
 
+  useEffect(() => {
+    getUserFinancialRequests();
+  }, []);
+
   return (
     <div className="pt-3">
-      <h1 className="text-4xl font-bold">All recent financial requests</h1>
+      <h1 className="text-4xl font-bold">My financial requests</h1>
       <div>
-        {financialRequests.map((fRequest) => (
+        {userFinancialRequests.map((fRequest) => (
           <div
             className="w-2/5 shadow-lg min-h-32 h-fit px-3 py-3 my-3 cursor-pointer hover:shadow-xl hover:translate-x-2 transition-all ease-in-out"
             key={fRequest}
@@ -44,7 +44,7 @@ const AllFinancialRequests = () => {
           </div>
         ))}
       </div>
-      <FinancialRequestModal
+      <UserFinancialRequestModal
         state={financialModalState.open}
         toggleModal={toggleFinancialModal}
         request={financialModalState.request}
@@ -53,4 +53,4 @@ const AllFinancialRequests = () => {
   );
 };
 
-export default AllFinancialRequests;
+export default MyFinancialRequests;

@@ -57,12 +57,17 @@ const Header = () => {
           }}
         >
           <div className="flex flex-col w-56 py-3 px-1">
-            <div className="p-2 hover:bg-green-500 rounded hover:text-white cursor-pointer">
-              MY QUERIES
-            </div>
-            <div className="p-2 hover:bg-green-500 rounded hover:text-white cursor-pointer">
-              MY REQUESTS
-            </div>
+            <Link to="/client/queries">
+              <div className="p-2 hover:bg-green-500 rounded hover:text-white cursor-pointer">
+                MY QUERIES
+              </div>
+            </Link>
+            <Link to="/client/financialRequests">
+              <div className="p-2 hover:bg-green-500 rounded hover:text-white cursor-pointer">
+                MY REQUESTS
+              </div>
+            </Link>
+
             <div className="p-2 hover:bg-green-500 rounded hover:text-white cursor-pointer">
               MY PROFILE
             </div>

@@ -16,11 +16,11 @@ const ModalContainer = styled("div")(() => ({
   display: "flex",
   flexDirection: "column",
   padding: "20px",
-  maxHeight: "85vh",
-  overflowY: "scroll",
+  maxHeight:"85vh",
+  overflowY:"scroll"
 }));
 
-const QueryModal = ({ state, toggleModal, query }) => {
+const UserQueryModal = ({ state, toggleModal, query }) => {
   const [responseText, setResponseText] = useState("");
 
   const handleChange = (e) => {
@@ -41,21 +41,19 @@ const QueryModal = ({ state, toggleModal, query }) => {
       <ModalContainer>
         <h1 className="text-3xl">{query?.title}</h1>
         <h1 className="text-xl">{query?.description}</h1>
-        <div className="mt-5">
-          <h1 className="font-bold">User details:</h1>
-          <div>Name: {query?.author?.name}</div>
-          <div>Email/phone: {query?.author?.email || query?.author?.phone}</div>
-        </div>
-        <div>
-          {query?.response?.map((response) => (
-            <div className="flex gap-3 border-2 border-gray-300 rounded p-2 my-2">
-              <Avatar>{response?.author?.name[0]}</Avatar>
-              <div>
-                <h1 className="text-sm font-bold">{response?.author?.name}</h1>
-                <h1 className="text-md text-gray-700">{response?.text}</h1>
+        <div className="mt-3">
+          <h1 className="font-bold">Messages</h1>
+          <div>
+            {query?.response?.map((response) => (
+              <div className="flex gap-3 border-2 border-gray-300 rounded p-2 my-2">
+                <Avatar>{response?.author?.name[0]}</Avatar>
+                <div>
+                  <h1 className="text-sm font-bold">{response?.author?.name}</h1>
+                  <h1 className="text-md text-gray-700">{response?.text}</h1>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
         <div className="mt-5 mb-5">
           <h1>Respond:</h1>
@@ -73,4 +71,4 @@ const QueryModal = ({ state, toggleModal, query }) => {
   );
 };
 
-export default QueryModal;
+export default UserQueryModal;

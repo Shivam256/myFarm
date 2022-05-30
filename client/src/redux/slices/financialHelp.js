@@ -3,6 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
     financialRequests:[],
+    userFinancialRequests:[]
 }
 
 const slice = createSlice({
@@ -12,10 +13,14 @@ const slice = createSlice({
         getFinancialRequestsSuccess(state,action){
             state.financialRequests = action.payload;
             return state;
+        },
+        getUserFinancialRequestsSuccess(state,action){
+            state.userFinancialRequests = action.payload;
+            return state;
         }
     }
 })
 
-export const {getFinancialRequestsSuccess} = slice.actions;
+export const {getFinancialRequestsSuccess,getUserFinancialRequestsSuccess} = slice.actions;
 
 export default slice.reducer;
