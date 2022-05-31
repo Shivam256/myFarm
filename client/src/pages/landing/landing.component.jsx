@@ -8,7 +8,7 @@ import CustomButton from "../../components/customButton/customButton.component";
 import SignUp from "./signup.component";
 import Login from "./login.component";
 import { useSelector } from "react-redux";
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const BackgroundBox = styled("div")(({ src }) => ({
   backgroundImage: `url('${src}')`,
@@ -44,7 +44,7 @@ const WelcomeComponent = ({ setMode }) => {
 
 const LandingPage = () => {
   const [mode, setMode] = useState("landing");
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const defaultOptions = {
     loop: true,
@@ -66,7 +66,11 @@ const LandingPage = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/client/home");
+      if (user.isAdmin) {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/client/home");
+      }
     }
   }, [isLoggedIn]);
 

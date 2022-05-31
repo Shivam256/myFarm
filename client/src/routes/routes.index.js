@@ -52,17 +52,25 @@ export default function Router() {
           element: <Explore />,
         },
         {
-          path:"news",
-          element:<News/>
+          path: "news",
+          element: <News />,
         },
         {
-          path:"queries",
-          element:<MyQueries/>
+          path: "queries",
+          element: <MyQueries />,
         },
         {
-          path:"financialRequests",
-          element:<MyFinancialRequests/>
-        }
+          path: "financialRequests",
+          element: <MyFinancialRequests />,
+        },
+        {
+          path: "profile",
+          element: <Profile />,
+        },
+        {
+          path: "cropRates",
+          element: <CropRates />,
+        },
       ],
     },
     {
@@ -74,13 +82,17 @@ export default function Router() {
           element: <AllQueries />,
         },
         {
-          path:"financialRequests",
-          element: <AllFinancialRequests/>
+          path: "financialRequests",
+          element: <AllFinancialRequests />,
         },
         {
-          path:"contacts",
-          element:<AllContacts/>
-        }
+          path: "contacts",
+          element: <AllContacts />,
+        },
+        {
+          path: "dashboard",
+          element: <AdminDashboard />,
+        },
       ],
     },
   ]);
@@ -110,8 +122,13 @@ const Explore = Loadable(
   lazy(() => import("../pages/explore/explore.component"))
 );
 
-const News = Loadable(
-  lazy(()=> import("../pages/news/news.componsnt"))
+const News = Loadable(lazy(() => import("../pages/news/news.componsnt")));
+
+const Profile = Loadable(
+  lazy(() => import("../pages/profile/profile.component"))
+);
+const CropRates = Loadable(
+  lazy(() => import("../pages/cropRates/cropRates.component"))
 );
 
 //admin pages
@@ -126,13 +143,19 @@ const AllFinancialRequests = Loadable(
 );
 
 const AllContacts = Loadable(
-  lazy(()=> import ("../pages/allContacts/allContacts.component"))
+  lazy(() => import("../pages/allContacts/allContacts.component"))
+);
+
+const AdminDashboard = Loadable(
+  lazy(() => import("../pages/adminDashboard/adminDashboard.component"))
 );
 
 const MyQueries = Loadable(
-  lazy(()=> import("../pages/myQueries/myQueries.component"))
+  lazy(() => import("../pages/myQueries/myQueries.component"))
 );
 
 const MyFinancialRequests = Loadable(
-  lazy(()=> import("../pages/myFinancialRequests/myFinancialRequests.component"))
-)
+  lazy(() =>
+    import("../pages/myFinancialRequests/myFinancialRequests.component")
+  )
+);

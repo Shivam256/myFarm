@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import Popover from "@mui/material/Popover";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
+import CustomButton from "../customButton/customButton.component";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -15,30 +16,48 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
   return (
     <div className="w-full bg-white fixed top-2 h-12 flex  py-2 items-center justify-between gap-5 px-10">
-      <Link className="flex items-center gap-5 h-full " to="/client/home">
+      <Link
+        className="flex items-center gap-5 h-full "
+        to={user.isAdmin ? "/admin/dashboard" : "/client/home"}
+      >
         <Logo width="40px" height="40px" />
         <h1 className="text-2xl">MyFarm</h1>
       </Link>
 
       <div className="flex gap-5">
-        <button className="border-2 border-green-600 p-2 px-10 rounded-lg text-green-600">
-          CHOOSE LANGUAGE
-        </button>
-        <Icon
-          className="cursor-pointer"
-          icon="gg:profile"
-          width="40px"
-          height="40px"
-          color="#00664E"
-          onClick={handleClick}
-        />
+        {user.isAdmin ? (
+          <div className="flex items-center gap-8">
+            <h1 className="text-green-600 font-bold">ADMIN</h1>
+            <CustomButton
+              onClick={() => {
+                logout();
+              }}
+            >
+              LOGOUT
+            </CustomButton>
+          </div>
+        ) : (
+          <>
+            <button className="border-2 border-green-600 p-2 px-10 rounded-lg text-green-600">
+              CHOOSE LANGUAGE
+            </button>
+            <Icon
+              className="cursor-pointer"
+              icon="gg:profile"
+              width="40px"
+              height="40px"
+              color="#00664E"
+              onClick={handleClick}
+            />
+          </>
+        )}
         <Popover
           id={id}
           open={open}
@@ -67,10 +86,12 @@ const Header = () => {
                 MY REQUESTS
               </div>
             </Link>
+            <Link to="/client/profile">
+              <div className="p-2 hover:bg-green-500 rounded hover:text-white cursor-pointer">
+                MY PROFILE
+              </div>
+            </Link>
 
-            <div className="p-2 hover:bg-green-500 rounded hover:text-white cursor-pointer">
-              MY PROFILE
-            </div>
             <div
               className="p-2 hover:bg-green-500 rounded hover:text-white cursor-pointer"
               onClick={() => {

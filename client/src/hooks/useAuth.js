@@ -13,13 +13,14 @@ import {
 import { useSnackbar } from "notistack";
 
 import { isValidToken,setSession } from "../utils/jwt";
-
+import {useNavigate} from 'react-router-dom';
 import axios from "../utils/axiosInstance";
 
 const useAuth = () => {
   const { isLoggedIn, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
   const registerClient = useCallback(async (userData) => {
     const response = await axios.post("/auth/signup", userData);
@@ -51,6 +52,8 @@ const useAuth = () => {
   const logout = useCallback(async () => {
     setSession(null);
     dispatch(logoutSuccess());
+    navigate("/");
+
   }, []);
 
   const initializeAuth = useCallback(async () => {

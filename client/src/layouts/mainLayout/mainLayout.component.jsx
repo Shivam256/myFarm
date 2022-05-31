@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../../components/header/header.component";
 
 const MainLayout = () => {
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -14,7 +14,11 @@ const MainLayout = () => {
       navigate("/");
     } else {
       if (pathname === "/") {
-        navigate("/client/home");
+        if (user.isAdmin) {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/client/home");
+        }
       } else {
         navigate(pathname);
       }
@@ -24,7 +28,7 @@ const MainLayout = () => {
   return (
     <div>
       <Header />
-      <div className='mt-14 px-10 w-screen'>
+      <div className="mt-14 px-10 w-screen">
         <Outlet />
       </div>
     </div>
